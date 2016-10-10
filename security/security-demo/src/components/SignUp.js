@@ -4,10 +4,13 @@ import TextField from "material-ui/TextField";
 import SelectField from "material-ui/SelectField";
 import MenuItem from "material-ui/MenuItem";
 import RaisedButton from "material-ui/RaisedButton";
+
 import User from "../auth";
+
 import * as way from "../constants";
 import messageUtils from "../error/messageUtil";
 import * as error from "../error/errorCode";
+
 import {browserHistory} from 'react-router';
 
 export default class SignUp extends Component {
@@ -57,13 +60,12 @@ export default class SignUp extends Component {
         }
 
         try {
-            new User(this.state.email, this.state.password, function (error) {
+            User.create(this.state.email, this.state.password, function (error) {
                 console.error(error.code, error.message);
                 console.log(messageUtils.message(error.code));
                 alert(messageUtils.message(error.code));
             });
             alert('저장 되었습니다. 다시 로그인 하여 주십시오.');
-            //Todo : login
             browserHistory.push('/login');
         } catch (e) {
             console.log('test : ' + e);
