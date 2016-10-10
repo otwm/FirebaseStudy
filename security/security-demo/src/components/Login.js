@@ -14,21 +14,25 @@ import {browserHistory} from 'react-router';
 export default class Login extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            email: null
-            , password: null
-        };
     }
 
     login() {
-
+        try {
+            User.login(
+                this.refs.email.getValue()
+                , this.refs.password.getValue());
+            alert('로그인 되었습니다.');
+            browserHistory.push('/init');
+        } catch (e) {
+            alert(e);
+        }
     }
 
-    signUp(){
-
+    signUp() {
+        browserHistory.push('/signUp');
     }
 
-    resetPassword(){
+    resetPassword() {
 
     }
 
@@ -42,7 +46,6 @@ export default class Login extends Component {
                 <TextField
                     id="email"
                     ref="email"
-                    value={this.state.email}
                     hintText="your_mail@mail.com"
                     floatingLabelText="email"
                     errorStyle={{"text-align": "left"}}
@@ -51,7 +54,6 @@ export default class Login extends Component {
                 <TextField
                     id="password"
                     ref="password"
-                    value={this.state.password}
                     hintText="your pass"
                     floatingLabelText="Password"
                     type="password"
