@@ -2,14 +2,8 @@ import React, {Component} from "react";
 import AppBar from "material-ui/AppBar";
 import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
-
 import User from "../auth";
-
-import * as way from "../constants";
-import messageUtils from "../error/messageUtil";
-import * as error from "../error/errorCode";
-
-import {browserHistory} from 'react-router';
+import {browserHistory} from "react-router";
 
 export default class Login extends Component {
     constructor(props) {
